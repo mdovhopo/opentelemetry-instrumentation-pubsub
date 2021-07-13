@@ -13,10 +13,10 @@ const LIB = '@google-cloud/pubsub';
 
 export class PubSubInstrumentation extends InstrumentationBase<typeof PubSub> {
   constructor(config: InstrumentationConfig = {}) {
-    super('opentelemetry-instrumentation-pubsub', '1.0.2', { ...config });
+    super('opentelemetry-instrumentation-pubsub', '1.1.0', { ...config });
   }
 
-  patch(moduleExports: typeof PubSub, version?: string): typeof PubSub {
+  private patch(moduleExports: typeof PubSub, version?: string): typeof PubSub {
     diag.debug(`Applying patch for ${LIB}@${version}`);
     // patch topic
     // topic.publish
@@ -46,7 +46,7 @@ export class PubSubInstrumentation extends InstrumentationBase<typeof PubSub> {
     return moduleExports;
   }
 
-  unpatch(moduleExports: typeof PubSub, version?: string): void {
+  private unpatch(moduleExports: typeof PubSub, version?: string): void {
     diag.debug(`Applying unpatch for ${LIB}@${version}`);
     if (moduleExports) {
       const topicProto = moduleExports.Topic.prototype;
@@ -59,7 +59,7 @@ export class PubSubInstrumentation extends InstrumentationBase<typeof PubSub> {
     }
   }
 
-  createOnMessagePatch(): (original: Subscription['on']) => Subscription['on'] {
+  private createOnMessagePatch(): (original: Subscription['on']) => Subscription['on'] {
     const instr = this;
     return function (original: Subscription['on']) {
       return function onMessagePatch(this: Subscription, ...args: Parameters<typeof original>) {
@@ -104,14 +104,16 @@ export class PubSubInstrumentation extends InstrumentationBase<typeof PubSub> {
     };
   }
 
-  createTopicPublishPatch(method: 'publish'): (original: Topic['publish']) => Topic['publish'];
-  createTopicPublishPatch(
+  private createTopicPublishPatch(
+    method: 'publish'
+  ): (original: Topic['publish']) => Topic['publish'];
+  private createTopicPublishPatch(
     method: 'publishJSON'
   ): (original: Topic['publishJSON']) => Topic['publishJSON'];
-  createTopicPublishPatch(
+  private createTopicPublishPatch(
     method: 'publishMessage'
   ): (original: Topic['publishMessage']) => Topic['publishMessage'];
-  createTopicPublishPatch(method: string): (original: any) => any {
+  private createTopicPublishPatch(method: string): (original: any) => any {
     const instr = this;
     return function (original: any) {
       return function publishPatch(this: Topic, ...args: Parameters<typeof original>) {

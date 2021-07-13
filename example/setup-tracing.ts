@@ -1,8 +1,7 @@
-import { ZipkinExporter } from '@opentelemetry/exporter-zipkin';
 import { registerInstrumentations } from '@opentelemetry/instrumentation';
 import { NodeTracerProvider } from '@opentelemetry/node';
 import { B3InjectEncoding, B3Propagator } from '@opentelemetry/propagator-b3';
-import { SimpleSpanProcessor } from '@opentelemetry/tracing';
+import { ConsoleSpanExporter, SimpleSpanProcessor } from '@opentelemetry/tracing';
 
 import { PubSubInstrumentation } from '../src/instrumentation';
 
@@ -13,13 +12,7 @@ export function setupTracing(): void {
     instrumentations: [new PubSubInstrumentation()],
   });
 
-  provider.addSpanProcessor(
-    new SimpleSpanProcessor(
-      new ZipkinExporter({
-        url: 'http://localhost:9411',
-      })
-    )
-  );
+  provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
 
   // Initialize the OpenTelemetry APIs to use the NodeTracerProvider bindings
   provider.register({

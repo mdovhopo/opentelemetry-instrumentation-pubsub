@@ -33,23 +33,23 @@ async function main() {
     // topic.publish
     // no attributes
     await topic.publish(Buffer.from(JSON.stringify(data)));
-    // // with attributes
-    // await topic.publish(Buffer.from(JSON.stringify(data)), { Operation: 'test' });
-    //
-    // // topic.publishJSON
-    // // no attributes
-    // await topic.publishJSON(data);
-    // // with attributes
-    // await topic.publishJSON(data, { Operation: 'test' });
-    //
-    // // topic.publishMessage
-    // // no attributes
-    // await topic.publishMessage({ data: Buffer.from(JSON.stringify(data)) });
-    // // with attributes
-    // await topic.publishMessage({
-    //   data: Buffer.from(JSON.stringify(data)),
-    //   attributes: { Operation: 'test' },
-    // });
+    // with attributes
+    await topic.publish(Buffer.from(JSON.stringify(data)), { Operation: 'test' });
+
+    // topic.publishJSON
+    // no attributes
+    await topic.publishJSON(data);
+    // with attributes
+    await topic.publishJSON(data, { Operation: 'test' });
+
+    // topic.publishMessage
+    // no attributes
+    await topic.publishMessage({ data: Buffer.from(JSON.stringify(data)) });
+    // with attributes
+    await topic.publishMessage({
+      data: Buffer.from(JSON.stringify(data)),
+      attributes: { Operation: 'test' },
+    });
   });
 
   console.log('subscribe to topic...');
