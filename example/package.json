@@ -1,0 +1,21 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dependencies": "docker-compose up",
+    "start:publish": "ts-node example.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/pubsub": "2.15.1",
+    "@opentelemetry/core": "^0.23.0",
+    "@opentelemetry/exporter-zipkin": "^0.23.0",
+    "@opentelemetry/instrumentation": "^0.23.0",
+    "better-wait": "^1.0.1",
+    "ts-node": "^10.1.0"
+  }
+}

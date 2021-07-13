@@ -1,0 +1,81 @@
+{
+  "name": "opentelemetry-instrumentation-pubsub",
+  "version": "0.0.0",
+  "description": "OpenTelemetry instrumentation for google pubsub",
+  "keywords": [
+    "opentelemetry",
+    "instrumentation",
+    "pubsub",
+    "google"
+  ],
+  "main": "dist/opentelemetry-instrumentation-pubsub.js",
+  "types": "dist/opentelemetry-instrumentation-pubsub.d.ts",
+  "files": [
+    "dist"
+  ],
+  "author": "Max Dovhopoliy <dovgopolyy0000@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mdovhopo/opentelemetry-instrumentation-pubsub"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "lint": "eslint --fix 'src/**/*.ts'",
+    "prebuild": "rimraf dist",
+    "build": "tsc --project tsconfig.build.json",
+    "build:docs": "typedoc --out docs --theme minimal src",
+    "test": "jest --config jest.config.ts --coverage",
+    "test:watch": "jest --config jest.config.ts --coverage --watch",
+    "test:prod": "npm run lint && npm run test -- --no-cache"
+  },
+  "lint-staged": {
+    "{src,test}/**/*.ts": [
+      "eslint --fix"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "peerDependencies": {
+    "@google-cloud/pubsub": "^2.15.1",
+    "@opentelemetry/api": "^1.0.1"
+  },
+  "dependencies": {
+    "@google-cloud/pubsub": "^2.15.1",
+    "@opentelemetry/core": "^0.23.0",
+    "@opentelemetry/instrumentation": "^0.23.0",
+    "@opentelemetry/semantic-conventions": "^0.23.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "11.0.0",
+    "@commitlint/config-conventional": "11.0.0",
+    "@opentelemetry/api": "1.0.1",
+    "@opentelemetry/context-async-hooks": "0.23.0",
+    "@opentelemetry/node": "0.23.0",
+    "@opentelemetry/tracing": "0.23.0",
+    "@types/jest": "26.0.19",
+    "@types/node": "^14.14.14",
+    "@typescript-eslint/eslint-plugin": "^4.10.0",
+    "@typescript-eslint/parser": "^4.10.0",
+    "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "husky": "^5.1.3",
+    "jest": "26.6.3",
+    "jest-config": "26.6.3",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "semantic-release": "^17.4.0",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^9.1.1",
+    "typedoc": "^0.20.28",
+    "typescript": "^4.1.3"
+  }
+}
