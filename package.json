@@ -8,8 +8,8 @@
     "pubsub",
     "google"
   ],
-  "main": "dist/opentelemetry-instrumentation-pubsub.js",
-  "types": "dist/opentelemetry-instrumentation-pubsub.d.ts",
+  "main": "dist/instrumentation.js",
+  "types": "dist/instrumentation.d.ts",
   "files": [
     "dist"
   ],

@@ -13,7 +13,7 @@ const LIB = '@google-cloud/pubsub';
 
 export class PubSubInstrumentation extends InstrumentationBase<typeof PubSub> {
   constructor(config: InstrumentationConfig = {}) {
-    super('opentelemetry-instrumentation-pubsub', '1.0.1', { ...config });
+    super('opentelemetry-instrumentation-pubsub', '1.0.2', { ...config });
   }
 
   patch(moduleExports: typeof PubSub, version?: string): typeof PubSub {
