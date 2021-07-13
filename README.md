@@ -5,6 +5,11 @@
 
 OpenTelemetry instrumentation for google pubsub
 
+## TODOs
+
+- examples in readme
+- test coverage
+
 <!-- TODO: add extended examples -->
 
 Installation:
