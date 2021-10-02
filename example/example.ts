@@ -12,14 +12,15 @@ const tid = 'topic_stub';
 const sid = 'sub_stub';
 
 async function main() {
+  console.log('creating pubsub instance...');
   const ps = new PubSub({
     projectId: pid,
     servicePath: 'localhost',
-    port: '8085',
+    port: '8888',
     sslCreds: credentials.createInsecure(),
   });
 
-  // publish topic
+  console.log('creating topic...');
   let topic = ps.topic(tid);
   const [topicExists] = await topic.exists();
   if (!topicExists) {
@@ -67,6 +68,7 @@ async function main() {
     msg.ack();
   });
 
+  console.log('traces will be printed to the console...');
   // delay, to let exporter to flash spans
   wait('20s').then(() => process.exit());
 }
