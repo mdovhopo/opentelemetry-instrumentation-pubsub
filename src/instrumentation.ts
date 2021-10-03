@@ -77,7 +77,8 @@ export class PubSubInstrumentation extends InstrumentationBase<typeof PubSub> {
               {
                 kind: SpanKind.CONSUMER,
                 attributes: {
-                  'topic.name': this.metadata?.topic || 'unknown',
+                  'topic.name': getTopicNameFromSub(this),
+                  'subscription.name': this.name,
                   'message.id': msg.id,
                 },
               },
@@ -157,6 +158,13 @@ export class PubSubInstrumentation extends InstrumentationBase<typeof PubSub> {
       ),
     ];
   }
+}
+
+function getTopicNameFromSub(sub: Subscription): string {
+  if (sub.topic) {
+    return typeof sub.topic === 'string' ? sub.topic : sub.topic.name;
+  }
+  return sub.metadata?.topic || 'unknown';
 }
 
 function endSpan(span: Span, err?: Error) {

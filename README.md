@@ -3,7 +3,17 @@
 [![Deploy](https://github.com/mdovhopo/opentelemetry-instrumentation-pubsub/workflows/build/badge.svg)](https://github.com/mdovhopo/opentelemetry-instrumentation-pubsub/actions)
 [![Coverage Status](https://coveralls.io/repos/github/mdovhopo/opentelemetry-instrumentation-pubsub/badge.svg?branch=master)](https://coveralls.io/github/mdovhopo/opentelemetry-instrumentation-pubsub?branch=master)
 
-OpenTelemetry instrumentation for google pubsub
+OpenTelemetry instrumentation for Google PubSub
+
+## Usage
+
+All use-cases are presented in `./examples` directory
+
+Run samples:
+
+```shell
+npx ts-node ./example/example.ts
+```
 
 ## TODOs
 
