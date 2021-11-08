@@ -91,7 +91,7 @@ export class PubSubInstrumentation extends InstrumentationBase<typeof PubSub> {
               return orgNack.apply(msg);
             };
 
-            return context.with(ctx, () =>
+            return context.with(trace.setSpan(ctx, span), () =>
               safeExecuteInTheMiddle(
                 () => orgHandler.apply(this, args),
                 (err) => endSpan(span, err)
