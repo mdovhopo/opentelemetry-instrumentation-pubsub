@@ -1,7 +1,7 @@
 import { registerInstrumentations } from '@opentelemetry/instrumentation';
-import { NodeTracerProvider } from '@opentelemetry/node';
 import { B3InjectEncoding, B3Propagator } from '@opentelemetry/propagator-b3';
-import { ConsoleSpanExporter, SimpleSpanProcessor } from '@opentelemetry/tracing';
+import { ConsoleSpanExporter, SimpleSpanProcessor } from '@opentelemetry/sdk-trace-base';
+import { NodeTracerProvider } from '@opentelemetry/sdk-trace-node';
 
 import { PubSubInstrumentation } from '../src/instrumentation';
 
