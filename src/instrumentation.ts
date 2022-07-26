@@ -13,7 +13,7 @@ const LIB = '@google-cloud/pubsub';
 
 export class PubSubInstrumentation extends InstrumentationBase<typeof PubSub> {
   constructor(config: InstrumentationConfig = {}) {
-    super('opentelemetry-instrumentation-pubsub', '1.1.0', { ...config });
+    super('opentelemetry-instrumentation-pubsub', '2.0.0', { ...config });
   }
 
   private patch(moduleExports: typeof PubSub, version?: string): typeof PubSub {
@@ -152,7 +152,7 @@ export class PubSubInstrumentation extends InstrumentationBase<typeof PubSub> {
     return [
       new InstrumentationNodeModuleDefinition<typeof PubSub>(
         LIB,
-        ['^2.15.1'],
+        ['>= 3'],
         (moduleExports, moduleVersion) => this.patch(moduleExports, moduleVersion),
         (moduleExports, moduleVersion) => this.unpatch(moduleExports, moduleVersion)
       ),
